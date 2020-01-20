@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
         const result = await db.query(`INSERT INTO products (name, description, brand,\"imageUrl\",price, category)
                                        VALUES ($1,$2,$3,$4,$5,$6) 
                                        RETURNING *`,
-            [req.body.name, req.body.description, req.body.brand, req.body.imageUrl, req.body.price, req.body.category]);
+            [req.body.name, req.body.description, req.body.brand, req.body.imageUrl, req.body.price, req.body.category, moment().format('YYYY-MM-DD HH:mm:ss')]);
         res.send(result.rows[0])
     } catch (ex) {
         console.log(ex);
